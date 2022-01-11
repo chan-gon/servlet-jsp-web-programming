@@ -1,0 +1,26 @@
+package com.edu.part7;
+
+import javax.servlet.ServletRequestEvent;
+import javax.servlet.ServletRequestListener;
+import javax.servlet.annotation.WebListener;
+
+@WebListener
+public class TestRequestListener implements ServletRequestListener {
+
+	public TestRequestListener() {
+		System.out.println("TestRequestListener 객체 생성");
+	}
+
+	@Override
+	public void requestDestroyed(ServletRequestEvent sre) {
+		System.out.println("HttpServletRequest 객체 해제");
+
+	}
+
+	@Override
+	public void requestInitialized(ServletRequestEvent sre) {
+		System.out.println("HttpServletRequest 객체 초기화");
+
+	}
+
+}

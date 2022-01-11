@@ -1,4 +1,4 @@
-package com.edu.test;
+package com.edu.part7;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,18 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/second")
-public class SecondServlet extends HttpServlet {
+@WebServlet("/errorTest1")
+public class ErrorTest1Servlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("SecondServlet");
+		resp.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = resp.getWriter();
-		out.print("<html><head><title>Test</title></head>");
-		out.print("<body><h1>have a nice day</h1></body>");
-		out.print("</html>");
-		out.close();
 
+		try {
+			String getQuery = req.getQueryString();
+			out.println("Query = " + getQuery);
+			out.print(getQuery.length());
+
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			out.close();
+		}
 	}
-
 }
